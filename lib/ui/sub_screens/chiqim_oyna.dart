@@ -42,42 +42,44 @@ class _ChiqimOynaState extends State<ChiqimOyna> {
         title: const Text("Chiqim oyna"),
       ),
       body: ListView.builder(
-          itemCount: listChiqim.length,
-          itemBuilder: (context, index) {
-            Chiqim item = listChiqim[index];
-            return DecoratedBox(
-              decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-              child: ListTile(
-                contentPadding:const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10.0),
-                title: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("nomi: ${item.nomi}"),
-                        const Text("  ||"),
-                        Text(
-                          "sotildi: ${item.sotildiMiqdor}",
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(item.time.toString().substring(0, 16)),
-                        const Text("||"),
-                        Text("price: ${item.sotildiPrice}"),
-                      ],
-                    ),
-                  ],
-                ),
-                onLongPress: (){
-                  item.delete();
-                  _selectAll();
-                },
+        itemCount: listChiqim.length,
+        itemBuilder: (context, index) {
+          Chiqim item = listChiqim[index];
+          return DecoratedBox(
+            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+            child: ListTile(
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              title: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("nomi: ${item.nomi}"),
+                      const Text("  ||"),
+                      Text(
+                        "sotildi: ${item.sotildiMiqdor}",
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(item.time.toString().substring(0, 16)),
+                      const Text("||"),
+                      Text("price: ${item.sotildiPrice}"),
+                    ],
+                  ),
+                ],
               ),
-            );
-          }),
+              onLongPress: () {
+                item.delete();
+                _selectAll();
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

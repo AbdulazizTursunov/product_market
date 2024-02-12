@@ -12,10 +12,12 @@ class _QoldiqOynaState extends State<QoldiqOyna> {
   List<Qoldiq> listQoldiq = [];
 
   _selectAll() {
-    setState(() {
-      listQoldiq = Qoldiq.obektlar.values.toList();
-      listQoldiq.sort((a, b) => a.tr);
-    });
+    setState(
+      () {
+        listQoldiq = Qoldiq.obektlar.values.toList();
+        listQoldiq.sort((a, b) => a.tr);
+      },
+    );
   }
 
   _obektQoldiqModel() async {
@@ -82,9 +84,10 @@ class _QoldiqOynaOneState extends State<QoldiqOynaOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      appBar: AppBar(title: const Text("Q O L D I Q   O Y N A"),centerTitle: true,),
+      appBar: AppBar(
+        title: const Text("Q O L D I Q   O Y N A"),
+        centerTitle: true,
+      ),
     );
   }
 }
-

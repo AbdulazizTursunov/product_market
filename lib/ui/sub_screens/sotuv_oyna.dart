@@ -17,10 +17,12 @@ class _SotuvOynaState extends State<SotuvOyna> {
   int countSell = 0;
 
   selectAll() {
-    setState(() {
-      listProduct = Product.obektlar.values.toList();
-      listProduct.sort((a, b) => a.tr);
-    });
+    setState(
+      () {
+        listProduct = Product.obektlar.values.toList();
+        listProduct.sort((a, b) => a.tr);
+      },
+    );
   }
 
   productObekt() async {
@@ -53,35 +55,40 @@ class _SotuvOynaState extends State<SotuvOyna> {
         title: const Text("Sotuv Oynasi"),
       ),
       body: ListView.builder(
-          itemCount: listProduct.length,
-          itemBuilder: (context, index) {
-            productInfo = listProduct[index];
+        itemCount: listProduct.length,
+        itemBuilder: (context, index) {
+          productInfo = listProduct[index];
 
-            return ListTile(
-              title: Row(
-                children: [
-                  Text("nomi: ${productInfo.nomi}"),
-                  const Spacer(),
-                  Text("sotiladigan narx: ${productInfo.sotNarx}"),
-                ],
-              ),
-              subtitle: Row(
-                children: [
-                  Text("miqdor: ${productInfo.miqdor}"),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      _changeCount(),
-                    ],
-                  )
-                ],
-              ),
-              onTap: () {},
-            );
-          }),
+          return ListTile(
+            title: Row(
+              children: [
+                Text("nomi: ${productInfo.nomi}"),
+                const Spacer(),
+                Text("sotiladigan narx: ${productInfo.sotNarx}"),
+              ],
+            ),
+            subtitle: Row(
+              children: [
+                Text("miqdor: ${productInfo.miqdor}"),
+                const Spacer(),
+                Row(
+                  children: [
+                    _changeCount(),
+                  ],
+                )
+              ],
+            ),
+            onTap: () {},
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton.extended(
         label: const Row(
-          children: [Icon(Icons.sell_sharp), SizedBox(width: 10), Text("sotish")],
+          children: [
+            Icon(Icons.sell_sharp),
+            SizedBox(width: 10),
+            Text("sotish")
+          ],
         ),
         onPressed: () async {
           Chiqim chiqim = Chiqim();
@@ -102,14 +109,15 @@ class _SotuvOynaState extends State<SotuvOyna> {
           await productInfo.qoldiq.update();
           selectAll();
           // countSellMap.clear();
-          setState(() {
-            countSell = 0;
-          });
+          setState(
+            () {
+              countSell = 0;
+            },
+          );
         },
       ),
     );
   }
-
 
   Widget _changeCount() {
     return FittedBox(
@@ -130,4 +138,3 @@ class _SotuvOynaState extends State<SotuvOyna> {
     );
   }
 }
-

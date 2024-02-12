@@ -208,24 +208,39 @@ class _MainMarketState extends State<MainMarket> {
                             width: 200,
                             child: ElevatedButton(
                               onPressed: () async {
-                                Product product = Product();
-                                product.nomi = nomiController.text;
-                                product.kelNarx = num.tryParse(kelNarxController.text) ?? 0;
-                                product.sotNarx = num.tryParse(sotNarxController.text) ?? 0;
-                                product.miqdor = num.tryParse(miqdorControlelr.text) ?? 0;
-                                product.time = DateTime.now();
-                                await product.insert();
-                                selectAll();
+                                if (nomiController.text.isNotEmpty &&
+                                    kelNarxController.text.isNotEmpty &&
+                                    sotNarxController.text.isNotEmpty &&
+                                    miqdorControlelr.text.isNotEmpty) {
+                                  Product product = Product();
+                                  product.nomi = nomiController.text;
+                                  product.kelNarx =
+                                      num.tryParse(kelNarxController.text) ?? 0;
+                                  product.sotNarx =
+                                      num.tryParse(sotNarxController.text) ?? 0;
+                                  product.miqdor =
+                                      num.tryParse(miqdorControlelr.text) ?? 0;
+                                  product.time = DateTime.now();
+                                  await product.insert();
+                                  selectAll();
 
-
-                                // // Qoldiq tablega insert qilish uchun
-                                qoldiqO.trBoboQoldiq = itemProduct.tr;
-                                qoldiqO.nomi = nomiController.text;
-                                qoldiqO.qoldiq = num.tryParse(miqdorControlelr.text) ?? 0;
-                                await qoldiqO.insert();
-                                setState(() {});
-                                Navigator.of(context).pop();
-                                _clearController();
+                                  // // Qoldiq tablega insert qilish uchun
+                                  qoldiqO.trBoboQoldiq = itemProduct.tr;
+                                  qoldiqO.nomi = nomiController.text;
+                                  qoldiqO.qoldiq =
+                                      num.tryParse(miqdorControlelr.text) ?? 0;
+                                  await qoldiqO.insert();
+                                  setState(() {});
+                                  Navigator.of(context).pop();
+                                  _clearController();
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text(
+                                          "Mahsulot malumotlarini to'liq kiriting"),
+                                    ),
+                                  );
+                                }
                               },
                               child: const Text("Mahsulot qo'shish",
                                   overflow: TextOverflow.ellipsis),
@@ -264,4 +279,3 @@ class _MainMarketState extends State<MainMarket> {
     super.dispose();
   }
 }
-
