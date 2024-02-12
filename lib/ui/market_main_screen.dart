@@ -46,11 +46,23 @@ class _MainMarketState extends State<MainMarket> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => const ShowDialog(),
+          //       ),
+          //     );
+          //   },
+          //   icon: const Icon(Icons.navigation_outlined),
+          // ),
           IconButton(
               onPressed: () {
                 Navigator.push(
