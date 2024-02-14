@@ -72,22 +72,3 @@ class _QoldiqOynaState extends State<QoldiqOyna> {
     );
   }
 }
-
-class QoldiqOynaOne extends StatefulWidget {
-  const QoldiqOynaOne({super.key});
-
-  @override
-  State<QoldiqOynaOne> createState() => _QoldiqOynaOneState();
-}
-
-class _QoldiqOynaOneState extends State<QoldiqOynaOne> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Q O L D I Q   O Y N A"),
-        centerTitle: true,
-      ),
-    );
-  }
-}

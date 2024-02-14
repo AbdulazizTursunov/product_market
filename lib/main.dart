@@ -1,8 +1,5 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:product_market/ui/market_main_screen.dart';
-import 'data/data/db_initialize.dart';
+import 'view.dart';
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +16,7 @@ void main()async {
   directory.create(recursive: true);
   }
   DbInitialize().initDb(directory.path);
-  runApp(const MyApp());
+  runApp(const MyPrintApp());
 }
 
 class MyApp extends StatelessWidget {

@@ -5,6 +5,7 @@ import 'package:product_market/data/model/qoldiq_model.dart';
 import 'package:product_market/ui/sub_screens/chiqim_oyna.dart';
 import 'package:product_market/ui/sub_screens/qoldiq_oyna.dart';
 
+import 'sub_screens/sircle_avatar.dart';
 import 'sub_screens/sotuv_oyna.dart';
 
 class MainMarket extends StatefulWidget {
@@ -21,7 +22,6 @@ class _MainMarketState extends State<MainMarket> {
   TextEditingController sotNarxController = TextEditingController();
   TextEditingController miqdorControlelr = TextEditingController();
   Product itemProduct = Product();
-  Qoldiq qoldiqO = Qoldiq();
 
   selectAll() {
     setState(() {
@@ -46,23 +46,11 @@ class _MainMarketState extends State<MainMarket> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          // IconButton(
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => const ShowDialog(),
-          //       ),
-          //     );
-          //   },
-          //   icon: const Icon(Icons.navigation_outlined),
-          // ),
           IconButton(
               onPressed: () {
                 Navigator.push(
@@ -106,7 +94,7 @@ class _MainMarketState extends State<MainMarket> {
                     Text("miqdor: ${itemProduct.miqdor}"),
                     const Spacer(),
                     Text(
-                        "time: ${itemProduct.time.toString().substring(0, 16)}"),
+                        "time: ${itemProduct.time.toString().substring(0,16)}"),
                   ],
                 ),
                 const Divider(),
@@ -224,23 +212,27 @@ class _MainMarketState extends State<MainMarket> {
                                     kelNarxController.text.isNotEmpty &&
                                     sotNarxController.text.isNotEmpty &&
                                     miqdorControlelr.text.isNotEmpty) {
-                                  Product product = Product();
-                                  product.nomi = nomiController.text;
-                                  product.kelNarx =
-                                      num.tryParse(kelNarxController.text) ?? 0;
-                                  product.sotNarx =
-                                      num.tryParse(sotNarxController.text) ?? 0;
-                                  product.miqdor =
-                                      num.tryParse(miqdorControlelr.text) ?? 0;
-                                  product.time = DateTime.now();
+                                  Product product = Product()
+                                    ..nomi = nomiController.text
+                                    ..kelNarx =
+                                        num.tryParse(kelNarxController.text) ??
+                                            0
+                                    ..sotNarx =
+                                        num.tryParse(sotNarxController.text) ??
+                                            0
+                                    ..miqdor =
+                                        num.tryParse(miqdorControlelr.text) ?? 0
+                                    ..time = DateTime.now();
                                   await product.insert();
                                   selectAll();
 
                                   // // Qoldiq tablega insert qilish uchun
-                                  qoldiqO.trBoboQoldiq = itemProduct.tr;
-                                  qoldiqO.nomi = nomiController.text;
-                                  qoldiqO.qoldiq =
-                                      num.tryParse(miqdorControlelr.text) ?? 0;
+                                  Qoldiq qoldiqO = Qoldiq()
+                                    ..trBoboQoldiq = itemProduct.tr
+                                    ..nomi = nomiController.text
+                                    ..qoldiq =
+                                        num.tryParse(miqdorControlelr.text) ??
+                                            0;
                                   await qoldiqO.insert();
                                   setState(() {});
                                   Navigator.of(context).pop();

@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  directprint
   sqlite3_flutter_libs
 )
 

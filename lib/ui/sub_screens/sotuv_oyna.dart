@@ -91,12 +91,12 @@ class _SotuvOynaState extends State<SotuvOyna> {
           ],
         ),
         onPressed: () async {
-          Chiqim chiqim = Chiqim();
-          chiqim.nomi = productInfo.nomi;
-          chiqim.trBoboChiqim = productInfo.tr;
-          chiqim.time = DateTime.now();
-          chiqim.sotildiPrice = productInfo.sotNarx * countSell;
-          chiqim.sotildiMiqdor = countSell;
+          Chiqim chiqim = Chiqim()
+          ..nomi = productInfo.nomi
+          ..trBoboChiqim = productInfo.tr
+          ..time = DateTime.now()
+          ..sotildiPrice = productInfo.sotNarx * countSell
+          ..sotildiMiqdor = countSell;
           await chiqim.insert();
 
           //sotuv oynasidagi miqdorni update qilish uchun;
